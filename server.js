@@ -35,6 +35,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
         const printifyResponse = await uploadToPrintify(req.file.filename, uploadedImageUrl);
         res.send({ 
             message: 'Image uploaded successfully',
+            printifyResponse: printifyResponse
             // printifyResponse: printifyResponse.data 
         });
     } catch (error) {
@@ -58,7 +59,7 @@ async function uploadToPrintify(fileName, imageUrl) {
     // };
 
     // return axios.post('https://api.printify.com/v1/uploads/images.json', requestBody, config);
-    return null;
+    return requestBody;
 }
 
 app.listen(port, () => {
